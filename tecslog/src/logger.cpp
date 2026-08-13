@@ -43,8 +43,8 @@ tecslog::Logger::Logger():
   open_filename_(),
   level_(default_level_),
   out_(),
-  mutex_file(),
-  mutex_level()
+  mutex_level(),
+  mutex_file()
 {}
 
 tecslog::Logger::~Logger()

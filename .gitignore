@@ -1,2 +1,5 @@
+#make build
+build/
+
 #Folder with output log files for test demo
-logs
+logs/
