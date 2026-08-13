@@ -19,7 +19,7 @@ namespace
   }
 }
 
-std::error_code demo::silenceCommand(std::istream& in, std::ostream& out, LogInfo& info)
+std::error_code demo::silenceCommand(std::istream& in, std::ostream& out)
 {
   std::string str_level;
   std::error_code code = readWordTillEnd(in, str_level);

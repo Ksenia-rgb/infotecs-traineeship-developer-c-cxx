@@ -52,10 +52,10 @@ int main(int argc, char** argv)
 
   demo::LogInfo info;
   std::unordered_map< std::string, std::function< std::error_code(std::istream&, std::ostream&) > > command_map;
-  command_map["silence"] = std::bind(demo::silenceCommand, _1, _2, std::ref(info));
-  command_map["default"] = std::bind(demo::defaultCommand, _1, _2);
+  command_map["silence"] = demo::silenceCommand;
+  command_map["default"] = demo::defaultCommand;
   command_map["log"] = std::bind(demo::logCommand, _1, _2, std::ref(info), std::ref(queue));
-  command_map["help"] = std::bind(demo::helpCommand, _1, _2);
+  command_map["help"] = demo::helpCommand;
 
   std::istream& in = std::cin;
   std::ostream& out = std::cout;
