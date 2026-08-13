@@ -10,16 +10,9 @@ DEMO = demo-app
 TESTS = tests
 
 CXX = g++
-CPPFLAGS = -Wall -Wextra -fPIC -I$(LIB)/include -I$(LIB)/src -I$(DEMO) -I$(TESTS)
+CPPFLAGS = -std=c++17 -Wall -Wextra -fPIC -I$(LIB)/include -I$(LIB)/src -I$(DEMO) -I$(TESTS)
 CXXFLAGS = -g
 LDFLAGS = -L$(BIN_DIR) -l$(LIB)
-
-system   := $(shell uname)
-ifneq 'MINGW' '$(patsubst MINGW%,MINGW,$(system))'
-CPPFLAGS += -std=c++17
-else
-CPPFLAGS += -std=gnu++17
-endif
 
 tecslog_sources = $(wildcard $(LIB)/src/*.cpp)
 tecslog_objects = $(addprefix $(OBJ_DIR)/, $(notdir $(tecslog_sources:.cpp=.o)))
