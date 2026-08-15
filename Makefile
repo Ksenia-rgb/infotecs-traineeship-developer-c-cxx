@@ -10,22 +10,18 @@ DEMO = demo-app
 TESTS = tests
 
 CXX = g++
-CPPFLAGS = -std=c++17 -Wall -Wextra -fPIC -I$(LIB)/include -I$(LIB)/src -I$(DEMO) -I$(TESTS)
+CPPFLAGS = -std=c++17 -Wall -fPIC -I$(LIB)/include -I$(LIB)/src -I$(DEMO) -I$(TESTS)
 CXXFLAGS = -g
 LDFLAGS = -L$(BIN_DIR) -l$(LIB)
 
 tecslog_sources = $(wildcard $(LIB)/src/*.cpp)
-tecslog_objects = $(addprefix $(OBJ_DIR)/, $(notdir $(tecslog_sources:.cpp=.o)))
+tecslog_objects = $(addprefix $(OBJ_DIR)/, $(tecslog_sources:.cpp=.o))
 
 demo_sources = $(wildcard $(DEMO)/*.cpp)
-demo_objects = $(addprefix $(OBJ_DIR)/, $(notdir $(demo_sources:.cpp=.o)))
+demo_objects = $(addprefix $(OBJ_DIR)/, $(demo_sources:.cpp=.o))
 
 test_sources = $(wildcard $(TESTS)/*.cpp)
-test_objects = $(addprefix $(OBJ_DIR)/, $(notdir $(test_sources:.cpp=.o)))
-
-vpath %.cpp $(LIB)/src
-vpath %.cpp $(DEMO)
-vpath %.cpp $(TESTS)
+test_objects = $(addprefix $(OBJ_DIR)/, $(test_sources:.cpp=.o))
 
 all: $(LIB) $(DEMO) $(TESTS)
 
@@ -62,6 +58,10 @@ $(BUILD_DIR):
 
 $(OBJ_DIR): $(BUILD_DIR)
 	@mkdir -p $@
+	@mkdir -p $(OBJ_DIR)/$(LIB)
+	@mkdir -p $(OBJ_DIR)/$(LIB)/src
+	@mkdir -p $(OBJ_DIR)/$(DEMO)
+	@mkdir -p $(OBJ_DIR)/$(TESTS)
 
 $(BIN_DIR): $(BUILD_DIR)
 	@mkdir -p $@
